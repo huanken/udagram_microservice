@@ -15,12 +15,16 @@ before_script:
 
 script:
   - docker --version # print the version for logging
+  - cd udagram-api-feed
   - docker build -t udagram-api-feed ./udagram-api-feed
   - docker tag udagram-api-feed huanken/udagram-api-feed:v1
+  - cd ../udagram-api-user
   - docker build -t udagram-api-user ./udagram-api-user
   - docker tag udagram-api-user huanken/udagram-api-user:v1
+  - cd ../udagram-frontend
   - docker build -t udagram-frontend ./udagram-frontend
   - docker tag udagram-frontend:local huanken/udagram-frontend:v1
+  - cd ../reverseproxy
   - docker build -t reverseproxy ./reverseproxy
   - docker tag reverseproxy huanken/reverseproxy:v1
 
